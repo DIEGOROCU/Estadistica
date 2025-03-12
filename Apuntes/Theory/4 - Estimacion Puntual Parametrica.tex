@@ -309,3 +309,39 @@ $$
 (4) El EMV $\hat{\theta}$ no tiene por qué ser suficiente, pero si $S=S\left(X_{1}, \cdots, X_{n}\right)$ es suficiente para $\theta$, entonces $\hat{\theta}=\hat{\theta}(S)$\\
 (5) Invariancia: Si $\hat{\theta}$ es el EMV de $\theta$, entonces $h(\hat{\theta})$ es el EMV de $h(\theta)$\\
 (6) Bajo ciertas condiciones de regularidad, si $\left(X_{1}, \cdots X_{n}\right)$ es m.a.s. $(\mathrm{n})$ y $\theta \in \mathbb{R}$, entonces $\sqrt{n}(\hat{\theta}-\theta) \underset{n \rightarrow \infty}{d} N\left(0, \frac{1}{\sqrt{l_{1}(\theta)}}\right)$ y por lo tanto, $\hat{\theta}$ es asintóticamente insesgado para $\theta$ y asintóticamente eficiente
+
+
+\begin{problem}[Ejercicio 3.8.10]
+  Sea $X_1, \cdots, X_n$ una m.a.s. de una poblacion $N(\mu, \sigma^2)$.
+  Sean los estimadores de $\sigma^2$ dados por: 
+  $$T_1(X_1,\cdots,X_n) = \frac{1}{n} \sum_{i=1}^{n} (X_i - \bar{X})^2$$
+  $$T_2(X_1,\cdots,X_n) = \frac{1}{n-1} \sum_{i=1}^{n} (X_i - \bar{X})^2$$
+  \begin{enumerate}
+    \item Comparese ambos estimadores.
+    \item Mediante el criterio del $ECM$ compruebese:
+    \begin{enumerate}
+      \item $ECM_{T_1}(\sigma^2) = \frac{(2n-1)\sigma^4}{n^2}$
+      \item $ECM_{T_2}(\sigma^2) = \frac{2\sigma^4}{n-1}$
+    \end{enumerate}
+  \end{enumerate}
+\end{problem}
+
+\begin{sol}
+  \begin{enumerate}
+    \item Sabemos que $E[S^2] = \sigma^2$ y $\frac{(n-1)S^2}{\sigma^2} \sim \chi^2_{n-1}$, por lo que: \\
+    Ademas: $T_1 = \frac{n-1}{n}S^2$ y $T_2 = S^2$ \\
+    Por lo que $E[T_1] = E[\frac{n-1}{n}T_2] = \frac{n-1}{n}E[T_2] = \frac{n-1}{n}\sigma^2$ \\
+    Ahora: $\frac{n-1}{n}\sigma^2 \to_{n \to \infty} \sigma^2$ \\
+    Entonces el $Sesgo(T_1) = \frac{n-1}{n}\sigma^2 - \sigma^2 = -\frac{\sigma^2}{n}$ \\
+    Por otro lado, $E[T_2] = \sigma^2$ y $Sesgo(T_2) = 0$ \\
+    \item Sabemos que $ECM(T, \sigma^2) = V(T) + Sesgo(T)^2$ \\
+    Por ello: \\
+    $V(T_1) = V(\frac{n-1}{n}S^2) = V(\frac{(n-1)S^2}{n\sigma^2})\sigma^4 = V(\frac{(n-1)S^2}{\sigma^2})\frac{\sigma^4}{n^2} = V(\chi^2_{n-1})\frac{\sigma^4}{n^2} = \frac{2(n-1)}{n}\sigma^4$ \\
+    $Sesgo(T_1) = -\frac{\sigma^2}{n}$ \\
+    $ECM(T_1) = \frac{2(n-1)}{n}\sigma^4 + \frac{\sigma^4}{n^2} = \frac{(2n-1)\sigma^4}{n^2}$ \\
+    Ahora vayamos con $T_2$: \\
+    $V(T_2) = V(\frac{nT_1}{n-1}) = V(\frac{\sigma^2}{n-1}\chi^2_{n-1}) = \frac{\sigma^4}{(n-1)^2}V(\chi^2_{n-1}) = \frac{\sigma^4}{(n-1)^2}2(n-1) = \frac{2\sigma^4}{n-1}$ \\
+    $Sesgo(T_2) = 0$ \\
+    $ECM(T_2) = \frac{2\sigma^4}{n-1}$
+  \end{enumerate}
+\end{sol}
